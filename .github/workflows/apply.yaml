@@ -1,0 +1,18 @@
+name: Apply
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply - Provsions Infra
+        run: bash init.sh apply test hvs.3bZwuWZLUpE1qzpe7aXpTZz2
+
+      - name: Reading the version
+        run: cat /etc/*release
