@@ -6,8 +6,8 @@ resource "null_resource" "app" {
   provisioner "remote-exec" {
     connection {
       type     = "ssh"
-      user     = "ec2-user"  #local.get_ssh_user
-      password = "DevOps321" #local.get_ssh_pass
+      user     = local.get_ssh_user
+      password = local.get_ssh_pass
       host     = aws_instance.main.private_ip
     }
     inline = [
