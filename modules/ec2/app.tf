@@ -11,6 +11,10 @@ resource "null_resource" "app" {
             host     = aws_instance.main.private_ip
         }
         inline = [
+            "sudo growpart /dev/nvme0n1 4",
+            "sudo lvextend -l +70%FREE /dev/mapper/RootVG-homeVol ",
+            "sudo lvextend -l +100%FREE /dev/mapper/RootVG-varVol",
+            "sudo xfs_growfs  /var ; sudo xfs_growfs  /home",
             "pip3.11 install ansible",
             "type ansible",
             "pip3.11 install hvac",
