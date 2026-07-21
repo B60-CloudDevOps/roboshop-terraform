@@ -7,6 +7,7 @@ module "ec2" {
   sg_name       = var.sg_name
   name          = each.key
   instance_type = each.value["instance_type"]
+  root_volume_size = each.value["root_volume_size"]
   domain_name   = var.domain_name
   internal      = each.value["internal"]
   vault_token   = var.vault_token
