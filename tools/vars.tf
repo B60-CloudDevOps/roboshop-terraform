@@ -32,6 +32,4 @@ variable "tools" {
   }
 }
 
-variable "vault_token" {
-  default = "xyz"
-}
+variable "vault_token" {}
