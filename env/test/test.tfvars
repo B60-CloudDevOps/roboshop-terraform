@@ -20,23 +20,27 @@ instance_types = [
 # Value of the map of maps for components variable, we can use this in any environment and change the instance type as per the requirement of the environment. This is how we can achieve the DRY code in terraform.
 components = {
   mongodb = {
-    instance_type = "t3.medium"
-    internal      = true
+    instance_type    = "t3.medium"
+    root_volume_size = 30
+    internal         = true
   }
 
   redis = {
-    instance_type = "t3.micro"
-    internal      = true
+    instance_type    = "t3.micro"
+    root_volume_size = 30
+    internal         = true
   }
 
   mysql = {
-    instance_type = "t3.medium"
-    internal      = true
+    instance_type    = "t3.medium"
+    root_volume_size = 30
+    internal         = true
   }
 
   rabbitmq = {
-    instance_type = "t3.micro"
-    internal      = true
+    instance_type    = "t3.micro"
+    root_volume_size = 30
+    internal         = true
   }
 
 }
