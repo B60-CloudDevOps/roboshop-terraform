@@ -17,7 +17,7 @@ resource "aws_eks_cluster" "main" {
     aws_iam_role_policy_attachment.cluster_AmazonEKSBlockStoragePolicy,
     aws_iam_role_policy_attachment.cluster_AmazonEKSLoadBalancingPolicy,
     aws_iam_role_policy_attachment.cluster_AmazonEKSNetworkingPolicy,
-    
+
   ]
 }
 
@@ -25,9 +25,9 @@ resource "aws_eks_addon" "cni" {
   cluster_name = aws_eks_cluster.main.name
   addon_name   = "vpc-cni"
   configuration_values = jsonencode({
-     "enableNetworkPolicy" = "true"
-     "nodeAgent": {
-        "enablePolicyEventLogs" = "true"
-     }
-    })
+    "enableNetworkPolicy" = "true"
+    "nodeAgent" : {
+      "enablePolicyEventLogs" = "true"
+    }
+  })
 }

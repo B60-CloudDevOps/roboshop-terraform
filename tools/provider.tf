@@ -3,7 +3,7 @@ provider "aws" {
   region = "us-east-1"
 }
 
-terraform { 
+terraform {
   backend "s3" {
     bucket = "b60-s3-for-tfstate"
     key    = "tools/tools-env/terraform.tfstate"
@@ -12,7 +12,7 @@ terraform {
 }
 
 provider "vault" {
-  address = "http://vault-tools.robotshop.fun:8200"
-  token   = var.vault_token 
+  address         = "http://vault-tools.robotshop.fun:8200"
+  token           = var.vault_token
   skip_tls_verify = true
 }

@@ -3,7 +3,7 @@ variable "cluster_name" {
 }
 
 variable "eks_version" {
-  type = string
+  type    = string
   default = "1.35"
 }
 
@@ -15,18 +15,18 @@ variable "env" {
   type = string
 }
 
-variable "node_group_desired_size" {  
-  type = number
+variable "node_group_desired_size" {
+  type    = number
   default = 2
 }
 
 variable "node_group_max_size" {
-  type = number
+  type    = number
   default = 5
 }
 
 variable "node_group_min_size" {
-  type = number
+  type    = number
   default = 1
 }
 
