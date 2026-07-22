@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Apply - Provsions Infra
-        run: bash init.sh apply test hvs.SF62pXEFdIJlbHuyHH43xTAL
+        run: bash init.sh apply test ${{ secrets.VAULT_TOKEN }}
 
       - name: Reading the version
         run: cat /etc/*release
