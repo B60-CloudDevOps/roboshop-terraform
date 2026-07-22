@@ -3,7 +3,7 @@ resource "null_resource" "metrics_server" {
 
   provisioner "local-exec" {
     command = <<EOT
-      aws eks update-kubeconfig --region us-east-1 --name {{ cluster_name }}-{{ env }}
+      aws eks update-kubeconfig --region us-east-1 --name "${var.cluster_name}-${var.env}" 
       kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 EOT
   }
