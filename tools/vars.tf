@@ -25,11 +25,11 @@ variable "tools" {
       internal         = false
       root_volume_size = 40
     }
-    github-runner = {
-      instance_type    = "t3.medium"
-      internal         = true
-      root_volume_size = 35
-    }
+    # github-runner = {
+    #   instance_type    = "t3.medium"
+    #   internal         = true
+    #   root_volume_size = 35
+    # }
   }
 }
 
