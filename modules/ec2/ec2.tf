@@ -1,4 +1,3 @@
-
 resource "aws_instance" "main" {
 
   ami                    = data.aws_ami.latest.id
