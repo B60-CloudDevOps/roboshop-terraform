@@ -1,5 +1,4 @@
 #!/bin/bash
-
 action=$1
 environment=$2
 token=$3
