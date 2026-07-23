@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Destroy Infra
-        run: make test-destroy-plan TOKEN={{ secrets.VAULT_TOKEN }} 
+        run: make test-destroy-plan TOKEN="{{ secrets.VAULT_TOKEN }}"
 
       - name: Provisions Infra
-        run: make test-destroy TOKEN={{ secrets.VAULT_TOKEN }} 
+        run: make test-destroy TOKEN="{{ secrets.VAULT_TOKEN }}"
