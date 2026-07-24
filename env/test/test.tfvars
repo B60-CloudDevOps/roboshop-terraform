@@ -23,6 +23,10 @@ components = {
     instance_type    = "t3.medium"
     root_volume_size = 30
     internal         = true
+    iam_policy = [
+      "ec2:DescribeTags",
+      "ec2:DescribeInstances"
+    ]
   }
 
   # redis = {
