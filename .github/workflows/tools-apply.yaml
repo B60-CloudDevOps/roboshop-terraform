@@ -10,10 +10,11 @@ jobs:
       - name: Plans Tools Infra
         run: make tools-plan TOKEN="${{ secrets.VAULT_TOKEN }}"
 
-  # provision:
-  #   needs: plan
-  #   runs-on: self-hosted
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #     - name: Provisions Tools Infra
-  #       run: make tools-apply TOKEN="${{ secrets.VAULT_TOKEN }}"
+  provision:
+    needs: plan
+    runs-on: self-hosted
+    environment: tools-approval
+    steps:
+      - uses: actions/checkout@v4
+      - name: Provisions Tools Infra
+        run: make tools-apply TOKEN="${{ secrets.VAULT_TOKEN }}"
