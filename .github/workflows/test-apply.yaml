@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Plans Infra
-        run: make test-plan TOKEN="{{ secrets.VAULT_TOKEN }}"
+        run: make test-plan TOKEN="${{ secrets.VAULT_TOKEN }}"
 
       - name: Provisions Infra
-        run: make test-apply TOKEN="{{ secrets.VAULT_TOKEN }}" 
+        run: make test-apply TOKEN="${{ secrets.VAULT_TOKEN }}"

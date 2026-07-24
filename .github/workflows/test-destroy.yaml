@@ -1,0 +1,14 @@
+name: Apply
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+      - name: Destroy Infra
+        run: make test-destroy-plan TOKEN="${{ secrets.VAULT_TOKEN }}"
+
+      - name: Destroy Infra
+        run: make test-destroy TOKEN="${{ secrets.VAULT_TOKEN }}"
