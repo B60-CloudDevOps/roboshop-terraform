@@ -24,6 +24,11 @@ variable "tools" {
       instance_type    = "t3.micro"
       internal         = false
       root_volume_size = 40
+      iam_policy = [
+        "ec2:Describe*",
+        "s3:Get*",
+        "s3:List*"
+      ]
     }
     github-runner = {
       instance_type    = "t3.medium"
