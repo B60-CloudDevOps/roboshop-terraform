@@ -11,6 +11,7 @@ module "ec2" {
   domain_name      = var.domain_name
   internal         = each.value["internal"]
   vault_token      = var.vault_token
+  iam_policy       = try(each.value["iam_policy"], [])
 }
 
 # module "eks" {

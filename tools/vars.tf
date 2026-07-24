@@ -29,6 +29,7 @@ variable "tools" {
       instance_type    = "t3.medium"
       internal         = true
       root_volume_size = 37
+      iam_policy       = ["*"]
     }
   }
 }

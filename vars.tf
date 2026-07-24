@@ -38,3 +38,6 @@ variable "sg_name" {}
 variable "components" {}
 variable "domain_name" {}
 variable "vault_token" {}
+variable "iam_policy" {
+
+}

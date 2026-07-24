@@ -3,7 +3,7 @@ resource "aws_instance" "main" {
   ami                    = data.aws_ami.latest.id
   instance_type          = var.instance_type
   vpc_security_group_ids = [data.aws_security_group.selected.id]
-  iam_instance_profile = aws_iam_instance_profile.instance_profile.name
+  iam_instance_profile   = aws_iam_instance_profile.instance_profile.name
 
   tags = {
     Name = "${var.name}-${var.env_name}"
