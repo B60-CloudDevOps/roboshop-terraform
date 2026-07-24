@@ -29,11 +29,11 @@ components = {
     ]
   }
 
-  # redis = {
-  #   instance_type    = "t3.micro"
-  #   root_volume_size = 30
-  #   internal         = true
-  # }
+  redis = {
+    instance_type    = "t3.micro"
+    root_volume_size = 30
+    internal         = true
+  }
 
   # mysql = {
   #   instance_type    = "t3.medium"
