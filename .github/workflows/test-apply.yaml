@@ -17,6 +17,7 @@ jobs:
   provision:
     needs: plan
     runs-on: self-hosted
+    environment: test-approval
     steps:
       - uses: actions/checkout@v4
       - name: Provisions Test Infra
