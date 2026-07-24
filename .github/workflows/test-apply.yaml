@@ -7,12 +7,17 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  plan:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
       - name: Plans Infra
         run: make test-plan TOKEN="${{ secrets.VAULT_TOKEN }}"
 
+  provision:
+    needs: plan
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
       - name: Provisions Test Infra
         run: make test-apply TOKEN="${{ secrets.VAULT_TOKEN }}"
