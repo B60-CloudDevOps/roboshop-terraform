@@ -14,6 +14,5 @@ jobs:
       - name: Plans Infra
         run: make test-plan TOKEN="${{ secrets.VAULT_TOKEN }}"
 
-      # - name: Provisions Infra
-      #   run: make test-apply TOKEN="${{ secrets.VAULT_TOKEN }}"
-# test
+      - name: Provisions Test Infra
+        run: make test-apply TOKEN="${{ secrets.VAULT_TOKEN }}"
