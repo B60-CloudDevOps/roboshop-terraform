@@ -12,9 +12,10 @@ resource "null_resource" "app" {
     }
     inline = [
       "sudo growpart /dev/nvme0n1 4",
-      "sudo lvextend -l +70%FREE /dev/mapper/RootVG-homeVol ",
+      "sudo lvextend -l +50%FREE /dev/mapper/RootVG-homeVol ",
+      "sudo lvextend -l +20%FREE  /dev/mapper/RootVG-rootVol ",
       "sudo lvextend -l +100%FREE /dev/mapper/RootVG-varVol",
-      "sudo xfs_growfs  /var ; sudo xfs_growfs  /home",
+      "sudo xfs_growfs  /var ; sudo xfs_growfs  /home; sudo xfs_growfs  /",
       "pip3.11 install ansible",
       "type ansible",
       "pip3.11 install hvac",
