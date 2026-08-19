@@ -30,12 +30,12 @@ variable "tools" {
         "s3:List*"
       ]
     }
-    github-runner = {
-      instance_type    = "t3.medium"
-      internal         = true
-      root_volume_size = 50
-      iam_policy       = ["*"]
-    }
+    # github-runner = {
+    #   instance_type    = "t3.medium"
+    #   internal         = true
+    #   root_volume_size = 50
+    #   iam_policy       = ["*"]
+    # }
   }
 }
 
