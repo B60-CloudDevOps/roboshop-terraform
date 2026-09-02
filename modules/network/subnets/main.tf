@@ -4,7 +4,7 @@ resource "aws_subnet" "main" {
   cidr_block        = var.cidr_block[count.index]
   availability_zone = var.availability_zones[count.index % length(var.availability_zones)]
 
-  #   tags = {
-  #     Name = "roboshop-${var.env}-subnet"
-  #   }
+  tags = {
+    Name = "roboshop-${var.env}-subnet"
+  }
 }
