@@ -1,10 +1,11 @@
 module "vpc" {
   for_each = var.vpc
 
-  source      = "./modules/network"
-  vault_token = var.vault_token
-  vpc_cidr    = each.value["vpc_cidr"]
-  env         = var.env
+  source             = "./modules/network"
+  vault_token        = var.vault_token
+  vpc_cidr           = each.value["vpc_cidr"]
+  env                = var.env
+  availability_zones = var.availability_zones
 }
 
 # module "ec2" {
