@@ -1,15 +1,7 @@
-variable "vpc_cidr" {
-  type = string
-}
+variable "vpc_cidr" {}
 
-# variable "subnets" {
-#   type = map(any)
-# }
+variable "availability_zones" {}
 
-variable "env" {
-  type = string
-}
+variable "env" {}
 
-variable "vault_token" {
-  type = string
-}
+variable "vault_token" {}
