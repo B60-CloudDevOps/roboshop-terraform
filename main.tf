@@ -1,4 +1,4 @@
-module "network" {
+module "vpc" {
   for_each = var.vpc
 
   source      = "./modules/vpc"
