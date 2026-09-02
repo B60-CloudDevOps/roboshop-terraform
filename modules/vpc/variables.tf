@@ -9,3 +9,7 @@ variable "subnets" {
 variable "env" {
   type = string
 }
+
+variable "vault_token" {
+  type = string
+}
