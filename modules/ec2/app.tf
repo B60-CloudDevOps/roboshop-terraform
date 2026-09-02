@@ -2,7 +2,7 @@
 resource "null_resource" "app" {
   depends_on = [aws_instance.main, aws_route53_record.a_record]
   # This will be created only after the EC2 instance and Route53 record is created
-  
+
   triggers = {
     always_run = var.name == "github-runner" ? "${timestamp()}" : ""
   }
