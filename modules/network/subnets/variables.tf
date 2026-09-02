@@ -9,3 +9,7 @@ variable "cidr_block" {
 variable "env" {
   type = string
 }
+
+variable "availability_zones" {
+  type = list(string)
+}
