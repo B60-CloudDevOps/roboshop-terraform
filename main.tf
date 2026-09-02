@@ -1,7 +1,7 @@
 module "vpc" {
   for_each = var.vpc
 
-  source      = "./modules/vpc"
+  source      = "./modules/network"
   vault_token = var.vault_token
   vpc_cidr    = each.value["vpc_cidr"]
   env         = var.env
