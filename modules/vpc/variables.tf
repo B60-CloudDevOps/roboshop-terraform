@@ -13,7 +13,3 @@ variable "env" {
 variable "vault_token" {
   type = string
 }
-
-variable "env" {
-  type = string
-}
