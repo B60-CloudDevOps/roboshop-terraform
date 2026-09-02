@@ -4,7 +4,6 @@ module "network" {
   source      = "./modules/vpc"
   vault_token = var.vault_token
   vpc_cidr    = each.value["vpc_cidr"]
-  subnets     = each.value["subnets"]
   env         = var.env
 }
 
