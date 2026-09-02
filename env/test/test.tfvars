@@ -1,5 +1,4 @@
 # VPC Inputs
-env                     = "test"
 vpc = {
   main = {
     vpc_cidr           = "10.0.0.0/16"
@@ -30,7 +29,7 @@ vpc = {
 # ]
 
 # cluster_name            = "roboshop"
-env                     = "test"
+env = "test"
 # eks_version             = "1.35"
 # node_group_desired_size = 3
 # node_group_max_size     = 5
