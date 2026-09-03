@@ -6,6 +6,7 @@ module "vpc" {
   vpc_cidr           = each.value["vpc_cidr"]
   env                = var.env
   availability_zones = each.value["availability_zones"]
+  subnets            = each.value["subnets"]
 }
 
 # module "ec2" {

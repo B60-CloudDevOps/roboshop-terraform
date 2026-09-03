@@ -3,10 +3,14 @@ variable "vpc_id" {
 }
 
 variable "cidr_block" {
-  type = string
+  type = list(string)
 }
 
 variable "env" {
+  type = string
+}
+
+variable "name" {
   type = string
 }
 

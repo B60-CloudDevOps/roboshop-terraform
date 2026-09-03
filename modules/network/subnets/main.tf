@@ -5,6 +5,6 @@ resource "aws_subnet" "main" {
   availability_zone = var.availability_zones[count.index % length(var.availability_zones)]
 
   tags = {
-    Name = "roboshop-${var.env}-subnet"
+    Name = "roboshop-${var.env}-${var.name}-subnet-${count.index}"
   }
 }
