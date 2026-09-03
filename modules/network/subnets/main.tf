@@ -14,3 +14,13 @@ resource "aws_subnet" "main" {
     Name = "roboshop-${var.env}-${var.name}-subnet-${local.availability_zones[count.index % length(local.availability_zones)]}"
   }
 }
+
+resource "aws_route_table" "main" {
+  count = length(var.cidr_block)
+
+  vpc_id = var.vpc_id
+
+  tags = {
+    Name = "roboshop-${var.env}-${var.name}-route-table-${local.availability_zones[count.index % length(local.availability_zones)]}"
+  }
+}
