@@ -26,3 +26,13 @@ variable "availability_zones" {
 variable "igw_id" {
   type = string
 }
+
+variable "use_nat_gateway" {
+  type    = bool
+  default = false
+}
+
+variable "nat_gateway_ids" {
+  type    = list(string)
+  default = []
+}
