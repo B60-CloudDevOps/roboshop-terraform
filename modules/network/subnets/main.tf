@@ -31,3 +31,10 @@ resource "aws_route_table_association" "main" {
   subnet_id      = aws_subnet.main[count.index].id
   route_table_id = aws_route_table.main[count.index].id
 }
+
+resource "aws_route" "igw-route" {
+  count                  = var.map_public_ip ? length(var.cidr_block) : 0
+  route_table_id         = aws_route_table.main[count.index].id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = var.igw_id
+}

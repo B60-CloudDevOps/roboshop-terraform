@@ -16,6 +16,7 @@ module "subnets" {
   vpc_id             = aws_vpc.main.id
   availability_zones = var.availability_zones
   map_public_ip      = try(each.value["map_public_ip"], false)
+  igw_id             = aws_internet_gateway.main.id
 }
 
 resource "aws_internet_gateway" "main" {

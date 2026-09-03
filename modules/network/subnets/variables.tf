@@ -22,3 +22,7 @@ variable "map_public_ip" {
 variable "availability_zones" {
   type = list(string)
 }
+
+variable "igw_id" {
+  type = string
+}
