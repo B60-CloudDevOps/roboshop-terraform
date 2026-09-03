@@ -5,7 +5,7 @@ module "vpc" {
   vault_token        = var.vault_token
   vpc_cidr           = each.value["vpc_cidr"]
   env                = var.env
-  availability_zones = var.availability_zones
+  availability_zones = each.value["availability_zones"]
 }
 
 # module "ec2" {
