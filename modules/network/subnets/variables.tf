@@ -14,6 +14,11 @@ variable "name" {
   type = string
 }
 
+variable "map_public_ip" {
+  type    = bool
+  default = false
+}
+
 variable "availability_zones" {
   type = list(string)
 }

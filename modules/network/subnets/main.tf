@@ -5,10 +5,11 @@ locals {
 }
 
 resource "aws_subnet" "main" {
-  count             = length(var.cidr_block)
-  vpc_id            = var.vpc_id
-  cidr_block        = var.cidr_block[count.index]
-  availability_zone = var.availability_zones[count.index % length(var.availability_zones)]
+  count                   = length(var.cidr_block)
+  vpc_id                  = var.vpc_id
+  cidr_block              = var.cidr_block[count.index]
+  availability_zone       = var.availability_zones[count.index % length(var.availability_zones)]
+  map_public_ip_on_launch = var.map_public_ip
 
   tags = {
     Name = "roboshop-${var.env}-${var.name}-subnet-${local.availability_zones[count.index % length(local.availability_zones)]}"
