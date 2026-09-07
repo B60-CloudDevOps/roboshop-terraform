@@ -20,6 +20,14 @@ vpc = {
       }
 
     }
+
+    peering_vpcs = {
+      tools = {
+        vpc_id = "vpc-0031cc952da0c7bfc"
+        vpc_cidr = "172.31.0.0/16"
+        routetable_id = "rtb-0623fe36206b96d65"
+      }
+    }
   }
 }
 
