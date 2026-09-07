@@ -59,7 +59,7 @@ resource "aws_vpc_peering_connection" "peering" {
   }
 }
 
-# Addng routes for peering connections in the route tables of the default VPC
+# Adding routes for peering connections in the route tables of the default VPC - 
 resource "aws_route" "peering_routes" {
   for_each = var.peering_vpcs
 
@@ -67,3 +67,12 @@ resource "aws_route" "peering_routes" {
   destination_cidr_block = var.vpc_cidr
   vpc_peering_connection_id = aws_vpc_peering_connection.peering[each.key].id
 }
+
+# Adding routes for peering connections in the route tables of the main VPC -
+resource "aws_route" "main_vpc_peering_routes" {
+  for_each = var.peering_vpcs
+
+  route_table_id         = aws_vpc.main.default_route_table_id
+  destination_cidr_block = each.value["cidr"]
+  vpc_peering_connection_id = aws_vpc_peering_connection.peering[each.key].id
+} 
