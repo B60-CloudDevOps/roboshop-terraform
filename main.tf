@@ -7,6 +7,7 @@ module "vpc" {
   env                = var.env
   availability_zones = each.value["availability_zones"]
   subnets            = each.value["subnets"]
+  peering_vpcs      = try(each.value["peering_vpcs"], {})
 }
 
 # module "ec2" {
