@@ -58,3 +58,12 @@ resource "aws_vpc_peering_connection" "peering" {
     Name = "roboshop-${var.env}-peering-${each.key}"
   }
 }
+
+# Addng routes for peering connections in the route tables of the default VPC
+resource "aws_route" "peering_routes" {
+  for_each = var.peering_vpcs
+
+  route_table_id         = each.value["routetable_id"]
+  destination_cidr_block = each.value["vpc_cidr"]
+  vpc_peering_connection_id = aws_vpc_peering_connection.peering[each.key].id
+}
