@@ -3,3 +3,4 @@ variable "availability_zones" {}
 variable "env" {}
 variable "vault_token" {}
 variable "subnets" {}
+variable "peering_vpcs" {}

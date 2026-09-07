@@ -45,3 +45,16 @@ module "private_subnets" {
   use_nat_gateway    = try(each.value["ngw"], false)
   nat_gateway_ids    = local.nat_gateway_ids
 }
+
+# Adding peering connections for VPCs defined in the peering_vpcs variable
+resource "aws_vpc_peering_connection" "peering" {
+  for_each = var.peering_vpcs
+
+  vpc_id        = aws_vpc.main.id
+  peer_vpc_id   = each.value["vpc_id"]
+  auto_accept   = true
+
+  tags = {
+    Name = "roboshop-${var.env}-peering-${each.key}"
+  }
+}
