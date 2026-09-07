@@ -31,6 +31,13 @@ locals {
   nat_gateway_ids = flatten([for subnet in module.public_subnets : subnet.nat_gateway_ids])
 }
 
+locals {
+  route_table_ids = flatten(concat(
+    [for subnet in module.public_subnets : subnet.route_table_ids],
+    [for subnet in module.private_subnets : subnet.route_table_ids]
+  ))
+}
+
 module "private_subnets" {
   for_each = { for name, subnet in var.subnets : name => subnet if !try(subnet["map_public_ip"], false) }
 
@@ -50,29 +57,35 @@ module "private_subnets" {
 resource "aws_vpc_peering_connection" "peering" {
   for_each = var.peering_vpcs
 
-  vpc_id        = aws_vpc.main.id
-  peer_vpc_id   = each.value["id"]
-  auto_accept   = true
+  vpc_id      = aws_vpc.main.id
+  peer_vpc_id = each.value["id"]
+  auto_accept = true
 
   tags = {
     Name = "roboshop-${var.env}-peering-${each.key}"
   }
 }
 
-# Adding routes for peering connections in the route tables of the default VPC - 
+# Adding routes for peering connections in the route table of the peer VPC -
 resource "aws_route" "peering_routes" {
   for_each = var.peering_vpcs
 
-  route_table_id         = each.value["routetable_id"]
-  destination_cidr_block = var.vpc_cidr
+  route_table_id            = each.value["routetable_id"]
+  destination_cidr_block    = var.vpc_cidr
   vpc_peering_connection_id = aws_vpc_peering_connection.peering[each.key].id
 }
 
-# Adding routes for peering connections in the route tables of the main VPC -
-resource "aws_route" "main_vpc_peering_routes" {
-  for_each = var.peering_vpcs
+# Adding routes for peering connections on all route tables of the roboshop VPC -
+resource "aws_route" "peering_routes_roboshop" {
+  for_each = {
+    for pair in setproduct(keys(var.peering_vpcs), local.route_table_ids) :
+    "${pair[0]}-${pair[1]}" => {
+      peering_key    = pair[0]
+      route_table_id = pair[1]
+    }
+  }
 
-  route_table_id         = aws_vpc.main.default_route_table_id
-  destination_cidr_block = each.value["cidr"]
-  vpc_peering_connection_id = aws_vpc_peering_connection.peering[each.key].id
-} 
+  route_table_id            = each.value["route_table_id"]
+  destination_cidr_block    = var.peering_vpcs[each.value["peering_key"]]["cidr"]
+  vpc_peering_connection_id = aws_vpc_peering_connection.peering[each.value["peering_key"]].id
+}

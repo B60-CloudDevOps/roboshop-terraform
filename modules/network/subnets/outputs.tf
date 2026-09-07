@@ -5,3 +5,7 @@ output "subnet_ids" {
 output "nat_gateway_ids" {
   value = aws_nat_gateway.main[*].id
 }
+
+output "route_table_ids" {
+  value = aws_route_table.main[*].id
+}
