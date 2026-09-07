@@ -51,7 +51,7 @@ resource "aws_vpc_peering_connection" "peering" {
   for_each = var.peering_vpcs
 
   vpc_id        = aws_vpc.main.id
-  peer_vpc_id   = each.value["vpc_id"]
+  peer_vpc_id   = each.value["id"]
   auto_accept   = true
 
   tags = {
