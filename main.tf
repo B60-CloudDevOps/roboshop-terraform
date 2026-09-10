@@ -43,4 +43,3 @@ module "eks" {
   node_group_min_size     = var.node_group_min_size
   instance_types          = var.instance_types
 }
-
