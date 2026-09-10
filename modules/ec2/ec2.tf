@@ -2,6 +2,7 @@ resource "aws_instance" "main" {
 
   ami                    = data.aws_ami.latest.id
   instance_type          = var.instance_type
+  subnet_id              = var.subnet_id
   vpc_security_group_ids = [data.aws_security_group.selected.id]
   iam_instance_profile   = aws_iam_instance_profile.instance_profile.name
 

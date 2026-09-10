@@ -1,6 +1,7 @@
 variable "env_name" {}
 variable "ami_name" {}
 variable "sg_name" {}
+variable "subnet_id" {}
 variable "instance_type" {}
 variable "root_volume_size" {}
 variable "name" {}
