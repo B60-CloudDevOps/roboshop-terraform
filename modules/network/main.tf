@@ -78,14 +78,16 @@ resource "aws_route" "peering_routes" {
 # Adding routes for peering connections on all route tables of the roboshop VPC -
 resource "aws_route" "peering_routes_roboshop" {
   for_each = {
-    for pair in setproduct(keys(var.peering_vpcs), local.route_table_ids) :
+    # Keyed by route table index (known at plan time), not the route table id itself
+    # (which is unknown until apply when the route tables are being created fresh).
+    for pair in setproduct(keys(var.peering_vpcs), range(length(local.route_table_ids))) :
     "${pair[0]}-${pair[1]}" => {
-      peering_key    = pair[0]
-      route_table_id = pair[1]
+      peering_key     = pair[0]
+      route_table_idx = pair[1]
     }
   }
 
-  route_table_id            = each.value["route_table_id"]
+  route_table_id            = local.route_table_ids[each.value["route_table_idx"]]
   destination_cidr_block    = var.peering_vpcs[each.value["peering_key"]]["cidr"]
   vpc_peering_connection_id = aws_vpc_peering_connection.peering[each.value["peering_key"]].id
 }
