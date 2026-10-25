@@ -5,7 +5,7 @@ on:
 
 jobs:
   verify-runner:
-    runs-on: arc-runners-set-dind
+    runs-on: arc-runners-set-x
     strategy:
       fail-fast: false
       matrix:
