@@ -1,0 +1,22 @@
+name: Test ARC Runner
+
+on:
+  workflow_dispatch:
+
+jobs:
+  verify-runner:
+    runs-on: arc-runner-set
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check environment and runner details
+        run: |
+          echo "=== ARC Runner Environment ==="
+          echo "Current User: $(whoami)"
+          echo "OS Details:"
+          cat /etc/os-release
+          echo "Kernel Version:"
+          uname -r
+          echo "Disk Usage:"
+          df -h
