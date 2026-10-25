@@ -10,27 +10,27 @@ module "vpc" {
   peering_vpcs       = try(each.value["peering_vpcs"], {})
 }
 
-module "ec2" {
-  for_each = var.components
-  depends_on = [module.vpc]
+# module "ec2" {
+#   for_each = var.components
+#   depends_on = [module.vpc]
 
-  source           = "./modules/ec2"
-  env_name         = var.env_name # This is how we supply the value to the module, we can use any variable or hardcoded value here
-  ami_name         = var.ami_name
-  sg_name          = var.sg_name
-  name             = each.key
-  instance_type    = each.value["instance_type"]
-  root_volume_size = each.value["root_volume_size"]
-  domain_name      = var.domain_name
-  internal         = each.value["internal"]
-  vault_token      = var.vault_token
-  iam_policy       = try(each.value["iam_policy"], [])
-  # Databases live in the db_private subnet, AZ 1a (first entry, matches availability_zones[0])
-  subnet_id        = module.vpc["main"].subnet_ids["db_private"][0]
-}
+#   source           = "./modules/ec2"
+#   env_name         = var.env_name # This is how we supply the value to the module, we can use any variable or hardcoded value here
+#   ami_name         = var.ami_name
+#   sg_name          = var.sg_name
+#   name             = each.key
+#   instance_type    = each.value["instance_type"]
+#   root_volume_size = each.value["root_volume_size"]
+#   domain_name      = var.domain_name
+#   internal         = each.value["internal"]
+#   vault_token      = var.vault_token
+#   iam_policy       = try(each.value["iam_policy"], [])
+#   # Databases live in the db_private subnet, AZ 1a (first entry, matches availability_zones[0])
+#   subnet_id        = module.vpc["main"].subnet_ids["db_private"][0]
+# }
 
 module "eks" {
-  depends_on = [module.ec2]
+  # depends_on = [module.ec2]
 
   source                  = "./modules/eks"
   cluster_name            = var.cluster_name
